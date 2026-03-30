@@ -1,0 +1,6 @@
+{
+  "page_style": "kiya-pages-style.css",
+  "feedback_style": "kiya-feedback-style.css",
+  "syntax_highlight": "github-light-default",
+  "run_gui": true
+}

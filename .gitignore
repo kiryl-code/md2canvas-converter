@@ -1,0 +1,11 @@
+.vscode/
+.idea/
+.venv/
+old/
+
+user-config.json
+*.md
+*.html
+
+.DS_Store
+__pycache__/

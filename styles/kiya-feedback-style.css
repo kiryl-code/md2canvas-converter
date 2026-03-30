@@ -1,0 +1,62 @@
+html {
+    font-family: system-ui, sans-serif;
+    line-height: 1.5;
+    max-width: 50%;
+    padding: 1em;
+}
+
+blockquote {
+    padding-left: 1em;
+    margin-left: 0;
+    font-style: italic;
+    border-left: 6px solid #eee;
+}
+
+
+code {
+    font-family: 'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;
+    font-size: .75rem;
+    border-radius: 6px;
+    padding: .125rem .25rem;
+    color: #9f4511;
+    background-color: #f2f4f4;
+    border: 1px solid #e8eaec;
+}
+
+pre {
+    font-family: 'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;
+}
+
+.codehilite {
+    padding: 0.5em 1.5em;
+    border-radius: 6px;
+    background-color: #efefef;
+}
+
+.cm {
+    color: #999 !important;
+}
+
+summary {
+    max-width: 100%;
+    background: #0D76BD;
+    color: #fff;
+    padding: 1em;
+    border-radius: 6px 6px 0 0;
+}
+
+details {
+    max-width: 100%;
+    margin-bottom: 5px;
+}
+
+.collapsible-content {
+    max-width: 100%;
+    padding: 1em 2em;
+    border: 0.5px solid #999;
+    border-radius: 0 0 6px 6px;
+}
+
+.collapsible-content pre {
+    overflow: auto;
+}

@@ -1,0 +1,66 @@
+body, hr, blockquote, summary, details {
+    max-width: 65ch;
+}
+
+blockquote {
+    padding-left: 1em;
+    margin-left: 0;
+    font-style: italic;
+    border-left: 6px solid #eee;
+}
+
+hr {
+    height: 1px;
+    border: none;
+    background: linear-gradient(to right, transparent, #000, transparent);
+}
+
+code {
+    font-family: 'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;
+    font-size: .75rem;
+    border-radius: 6px;
+    padding: .125rem .25rem;
+    color: #9f4511;
+    background-color: #f2f4f4;
+    border: 1px solid #e8eaec;
+}
+
+pre {
+    font-family: 'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;
+    background: none;
+    border: none;
+}
+
+.codehilite {
+    border-left: 1px solid #999;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    border-radius: 6px 0 0 6px;
+}
+
+.cm {
+    color: #999 !important;
+}
+
+summary {
+    background: #0D76BD;
+    color: #fff;
+    padding: 1em;
+    border-radius: 6px 6px 0 0;
+}
+
+details {
+    margin-bottom: 5px;
+}
+
+.collapsible-content {
+    padding: 1em 2em;
+    border: 0.5px solid #999;
+    border-radius: 0 0 6px 6px;
+}
+
+.collapsible-content pre {
+    overflow: auto;
+}
