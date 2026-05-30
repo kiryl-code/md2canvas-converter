@@ -17,7 +17,7 @@ class CollapsibleProcessor(BlockProcessor):
         match = re.match(self.RE_START, lines[0])
         title_text = match.group(1).strip() if match else ""
 
-        content_lines = []
+        content_blocks = []
         found_end = False
         consumed_blocks = 0
 
@@ -26,18 +26,19 @@ class CollapsibleProcessor(BlockProcessor):
 
             start_line = 1 if block_idx == 0 else 0
 
+            current_block_lines = []
             for line_idx in range(start_line, len(block_lines)):
                 if re.search(self.RE_END, block_lines[line_idx]):
-                    content_lines.extend(block_lines[start_line:line_idx])
                     found_end = True
                     consumed_blocks = block_idx + 1
                     break
+                current_block_lines.append(block_lines[line_idx])
+
+            if current_block_lines:
+                content_blocks.append("\n".join(current_block_lines))
 
             if found_end:
                 break
-
-            content_lines.extend(block_lines[start_line:])
-            content_lines.append("")
 
         if not found_end:
             return False
@@ -51,8 +52,7 @@ class CollapsibleProcessor(BlockProcessor):
         div = etree.SubElement(details, 'div')
         div.set('class', 'collapsible-content')
 
-        self.parser.parseBlocks(div, ["\n".join(content_lines)])
-
+        self.parser.parseBlocks(div, content_blocks)
         return True
 
 class CodeblockPostProcessor(Postprocessor):
