@@ -5,6 +5,7 @@ class FileSelectorDialog:
     """
     A reusable class that allows to select a file
     """
+
     def __init__(self, filetypes: list[tuple[str, str]] | None):
         """
         Constructs a FileSelectorDialog that allows to select
@@ -25,12 +26,12 @@ class FileSelectorDialog:
         initial_directory = initial_directory if initial_directory else "/"
         if self.filetypes:
             filepath = filedialog.askopenfilename(
-                filetypes = self.filetypes,
-                initialdir = initial_directory,
+                filetypes=self.filetypes,
+                initialdir=initial_directory,
             )
         else:
             filepath = filedialog.askdirectory(
-                initialdir = initial_directory
+                initialdir=initial_directory
             )
         if filepath:
             return filepath
