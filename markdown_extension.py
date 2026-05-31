@@ -1,5 +1,5 @@
 import re
-import xml.etree.ElementTree as etree
+import xml.etree.ElementTree as eTree
 from markdown.blockprocessors import BlockProcessor
 from markdown.postprocessors import Postprocessor
 from markdown.treeprocessors import Treeprocessor
@@ -46,10 +46,10 @@ class CollapsibleProcessor(BlockProcessor):
         for _ in range(consumed_blocks):
             blocks.pop(0)
 
-        details = etree.SubElement(parent, 'details')
-        summary = etree.SubElement(details, 'summary')
+        details = eTree.SubElement(parent, 'details')
+        summary = eTree.SubElement(details, 'summary')
         summary.text = title_text
-        div = etree.SubElement(details, 'div')
+        div = eTree.SubElement(details, 'div')
         div.set('class', 'collapsible-content')
 
         self.parser.parseBlocks(div, content_blocks)
@@ -67,6 +67,6 @@ class LinkTreeProcessor(Treeprocessor):
             classes = a.get('class')
             a.set('class', (classes + "inline_disabled").strip() if classes else "inline_disabled")
             link = a.get('href')
-            if not link.startswith('#'):
+            if type(link) == "String" and not link.startswith('#'):
                 a.set('target', '_blank')
         return root
