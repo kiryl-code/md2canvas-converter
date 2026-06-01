@@ -8,6 +8,8 @@ from markdown.inlinepatterns import InlineProcessor
 
 from markdown import Extension
 
+from utils.parser import parse_blocks
+
 
 class InlineColorProcessor(InlineProcessor):
     """
@@ -43,34 +45,10 @@ class CollapsibleProcessor(BlockProcessor):
         match = re.match(self.RE_START, lines[0])
         title_text = match.group(1).strip() if match else ""
 
-        content_blocks = []
-        found_end = False
-        consumed_blocks = 0
-
-        for block_idx, block in enumerate(blocks):
-            block_lines = block.split('\n')
-
-            start_line = 1 if block_idx == 0 else 0
-
-            current_block_lines = []
-            for line_idx in range(start_line, len(block_lines)):
-                if re.search(self.RE_END, block_lines[line_idx]):
-                    found_end = True
-                    consumed_blocks = block_idx + 1
-                    break
-                current_block_lines.append(block_lines[line_idx])
-
-            if current_block_lines:
-                content_blocks.append("\n".join(current_block_lines))
-
-            if found_end:
-                break
-
-        if not found_end:
+        try:
+            content_blocks = parse_blocks(self.RE_END, blocks)
+        except ValueError:
             return False
-
-        for _ in range(consumed_blocks):
-            blocks.pop(0)
 
         details = eTree.SubElement(parent, 'details')
         summary = eTree.SubElement(details, 'summary')
@@ -78,6 +56,40 @@ class CollapsibleProcessor(BlockProcessor):
         div = eTree.SubElement(details, 'div')
         div.set('class', 'collapsible-content')
 
+        self.parser.parseBlocks(div, content_blocks)
+        return True
+
+
+class SideBlockProcessor(BlockProcessor):
+    """
+    Processes custom side block syntax.
+    """
+
+    RE_START = r'^!{4,}(.*)'
+    RE_END = r'!{4,}\s*$'
+    BLOCK_TYPES = {
+        "info": "#FFC000",
+        "message": "#00699D",
+        "warning": "#C85550"
+    }
+
+    def test(self, parent, block):
+        return re.match(self.RE_START, block)
+
+    def run(self, parent, blocks) -> bool | None:
+        lines = blocks[0].split('\n')
+        match = re.match(self.RE_START, lines[0])
+        side_block_type = match.group(1).strip().lower() if match and match.group(1).strip() else "message"
+        side_block_color = self.BLOCK_TYPES.get(side_block_type, side_block_type)
+
+        try:
+            content_blocks = parse_blocks(self.RE_END, blocks)
+        except ValueError:
+            return False
+
+        div = eTree.SubElement(parent, "div")
+        div.set("class", "side-block")
+        div.set("style", f"border-left-color:{side_block_color};")
         self.parser.parseBlocks(div, content_blocks)
         return True
 
@@ -124,6 +136,7 @@ class ExtensionsRegister(Extension):
         :param md: Markdown instance
         """
         md.parser.blockprocessors.register(CollapsibleProcessor(md.parser), 'collapsible', 175)
+        md.parser.blockprocessors.register(SideBlockProcessor(md.parser), "sideblock", 175)
         md.inlinePatterns.register(InlineColorProcessor(InlineColorProcessor.COLOR_PATTERN, md), "inline color", 175)
         md.treeprocessors.register(LinkTreeProcessor(md), 'links', 15)
         md.postprocessors.register(CodeblockPostProcessor(md), 'remove_code_tag', 5)
