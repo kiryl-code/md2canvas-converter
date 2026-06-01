@@ -27,7 +27,8 @@ def convert(input_path: str, output_path: str, styles_path: str) -> None:
                     "codehilite",
                     "toc",
                     "nl2br",
-                    "sane_lists"])
+                    "sane_lists",
+                    "tables"])
 
     html = md.convert(markdown_content)
 
