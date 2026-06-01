@@ -16,7 +16,7 @@ hr {
 }
 
 code {
-    font-family: 'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;
+    font-family: Melno,Consolas,monospace;
     font-size: .75rem;
     border-radius: 6px;
     padding: .125rem .25rem;
@@ -26,18 +26,27 @@ code {
 }
 
 pre {
-    font-family: 'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;
+    font-family: Melno,Consolas,monospace;
     background: none;
     border: none;
 }
 
 .codehilite {
-    border-left: 1px solid #999;
-    padding-left: 1.5em;
-    padding-right: 1.5em;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
-    border-radius: 6px 0 0 6px;
+    /*border-left: 1px solid #999;*/
+    /*max-width: none !important;*/
+    padding: 20px;
+    border-radius: 6px;
+    overflow: auto;
+    width: fit-content;
+}
+
+.codehilite pre {
+    color: #D4D4D4 !important;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-size: 1rem !important;
+    /*max-width: none !important;*/
 }
 
 .cm {
@@ -62,5 +71,21 @@ details {
 }
 
 .collapsible-content pre {
-    overflow: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table th,
+table td {
+    border: 1px solid #888888;
+    padding: 8px 16px;
+}
+
+table th {
+    background: #0D76BD;
+    color: #fff;
 }
