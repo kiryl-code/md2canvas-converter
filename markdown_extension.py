@@ -4,9 +4,27 @@ import xml.etree.ElementTree as eTree
 from markdown.blockprocessors import BlockProcessor
 from markdown.postprocessors import Postprocessor
 from markdown.treeprocessors import Treeprocessor
+from markdown.inlinepatterns import InlineProcessor
 
 from markdown import Extension
 
+
+class InlineColorProcessor(InlineProcessor):
+    """
+    Process custom inline color syntax.
+    """
+
+    COLOR_PATTERN = r"::(.*?)\|(.*?)::"
+
+    def handleMatch(self, match, data):
+        color = match.group(1).strip()
+        text = match.group(2).strip()
+
+        span = eTree.Element("span")
+        span.set("style", f"color: {color};")
+        span.text = text
+
+        return span, match.start(0), match.end(0)
 
 class CollapsibleProcessor(BlockProcessor):
     """
@@ -104,5 +122,6 @@ class ExtensionsRegister(Extension):
         :param md: Markdown instance
         """
         md.parser.blockprocessors.register(CollapsibleProcessor(md.parser), 'collapsible', 175)
+        md.inlinePatterns.register(InlineColorProcessor(InlineColorProcessor.COLOR_PATTERN, md), "inline color", 175)
         md.treeprocessors.register(LinkTreeProcessor(md), 'links', 15)
         md.postprocessors.register(CodeblockPostProcessor(md), 'remove_code_tag', 5)
