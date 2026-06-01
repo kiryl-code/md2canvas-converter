@@ -26,6 +26,7 @@ class InlineColorProcessor(InlineProcessor):
 
         return span, match.start(0), match.end(0)
 
+
 class CollapsibleProcessor(BlockProcessor):
     """
     Processes custom expandable block syntax.
@@ -116,6 +117,7 @@ class ExtensionsRegister(Extension):
     """
     Register all custom extensions and overrides for Markdown package.
     """
+
     def extendMarkdown(self, md) -> None:
         """
         Register extensions and processors.
