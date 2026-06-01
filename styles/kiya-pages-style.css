@@ -46,6 +46,9 @@ pre {
     padding: 0;
     margin: 0;
     font-size: 1rem !important;
+    width: fit-content !important;
+    max-width: none;
+    overflow: auto;
     /*max-width: none !important;*/
 }
 
@@ -88,4 +91,12 @@ table td {
 table th {
     background: #0D76BD;
     color: #fff;
+}
+
+.side-block {
+    max-width: 65ch;
+    padding: 8px 16px;
+    border-radius: 0.5em;
+    border: 1px solid #ccc;
+    border-left: 0.5em solid;
 }
