@@ -4,6 +4,7 @@ import markdown
 import css_inline
 from pygments.formatters import HtmlFormatter
 from markdown_extension import ExtensionsRegister
+from utils.darcula_theme import DarculaStyle
 
 
 def convert(input_path: str, output_path: str, styles_path: str) -> None:
@@ -28,11 +29,12 @@ def convert(input_path: str, output_path: str, styles_path: str) -> None:
                     "toc",
                     "nl2br",
                     "sane_lists",
-                    "tables"])
+                    "tables",
+                    "footnotes"])
 
     html = md.convert(markdown_content)
 
-    formatter = HtmlFormatter(style="dark-plus")
+    formatter = HtmlFormatter(style=DarculaStyle)
     pygments_css = formatter.get_style_defs(".codehilite")
 
     html = f"<meta charset='UTF-8'><style>{pygments_css} {styles}</style><body>{html}</body>"
