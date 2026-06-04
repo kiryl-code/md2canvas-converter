@@ -1,4 +1,13 @@
-body, hr, blockquote, summary, details {
+/*
+Use with this tool to convert md to canvas html: https://github.com/kiryl-code/md2canvas-converter
+*/
+
+
+body, hr, blockquote, summary, details, .side-block {
+    /*
+    match canvas max-width for <p> to align content
+    does not applies to code blocks though
+    */
     max-width: 65ch;
 }
 
@@ -32,10 +41,9 @@ pre {
 }
 
 .codehilite {
-    /*border-left: 1px solid #999;*/
-    /*max-width: none !important;*/
     padding: 20px;
-    border-radius: 6px;
+    border-radius: 0.5em;
+    border: 1px solid #ccc;
     overflow: auto;
     width: fit-content;
 }
@@ -47,9 +55,8 @@ pre {
     margin: 0;
     font-size: 1rem !important;
     width: fit-content !important;
-    max-width: none;
     overflow: auto;
-    /*max-width: none !important;*/
+    max-width: none !important;
 }
 
 .cm {
@@ -94,9 +101,9 @@ table th {
 }
 
 .side-block {
-    max-width: 65ch;
     padding: 8px 16px;
     border-radius: 0.5em;
     border: 1px solid #ccc;
     border-left: 0.5em solid;
+    margin: 16px 0;
 }
