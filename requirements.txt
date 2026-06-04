@@ -1,0 +1,13 @@
+altgraph==0.17.5
+beautifulsoup4==4.14.3
+css-inline==0.20.2
+macholib==1.16.4
+Markdown==3.10.2
+packaging==26.0
+Pygments==2.19.2
+pygments-styles==0.3.0
+pyinstaller==6.19.0
+pyinstaller-hooks-contrib==2026.3
+setuptools==82.0.1
+soupsieve==2.8.3
+typing_extensions==4.15.0
