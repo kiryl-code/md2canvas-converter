@@ -70,6 +70,7 @@ class SideBlockProcessor(BlockProcessor):
     BLOCK_TYPES = {
         "info": "#FFC000",
         "message": "#00699D",
+        "success": "#2B8D50",
         "warning": "#C85550"
     }
 
