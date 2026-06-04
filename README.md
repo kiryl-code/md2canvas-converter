@@ -20,7 +20,7 @@ As the application is still actively being developed, the `main` branch might no
     ^^^^
     ```
 
-  - Side Blocks: create styled info, warning, or message blocks using `!!!! type`. E.g.:
+  - Side Blocks: create styled info, warning, or message blocks using `!!!! type`. You can also use color codes (hex) or color name instead of predefined types (which are `warning`, `info`, `message` and `success`) E.g.:
   
     ```markdown
     !!!! warning
@@ -28,7 +28,7 @@ As the application is still actively being developed, the `main` branch might no
     !!!!
     ```
 
-  - Inline Colors: color specific words directly in text using `::color | text::`.
+  - Inline Colors: color specific words directly in text using `::color | text::`. It supports both color names and hex codes.
 
 - Full support for tables, footnotes and nested lists without breaking numbering (`sane_lists`).
 
@@ -37,3 +37,9 @@ As the application is still actively being developed, the `main` branch might no
 ## Requirements
 
 * Python 3.10 or higher
+
+## ToDo
+
+[ ] Add support for different colors/sized for expandable block (may require some changes in syntax)
+
+[ ] Add support for custom classes
