@@ -8,7 +8,7 @@ body, hr, blockquote, summary, details, .side-block {
     match canvas max-width for <p> to align content
     does not applies to code blocks though
     */
-    max-width: 65ch;
+    /*max-width: 65ch;*/
 }
 
 blockquote {
@@ -38,6 +38,7 @@ pre {
     font-family: Melno,Consolas,monospace;
     background: none;
     border: none;
+    white-space: pre;
 }
 
 .codehilite {
@@ -45,7 +46,9 @@ pre {
     border-radius: 0.5em;
     border: 1px solid #ccc;
     overflow: auto;
-    width: fit-content;
+    /*width: fit-content;*/
+    /*max-width: 65ch;*/
+    max-width: 100%;
 }
 
 .codehilite pre {
@@ -54,9 +57,9 @@ pre {
     padding: 0;
     margin: 0;
     font-size: 1rem !important;
-    width: fit-content !important;
+    /*width: fit-content !important;*/
     overflow: auto;
-    max-width: none !important;
+    /*max-width: none !important;*/
 }
 
 .cm {

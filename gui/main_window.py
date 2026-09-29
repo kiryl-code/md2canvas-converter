@@ -1,45 +1,62 @@
+import customtkinter as ctk
 import tkinter as tk
 
 from gui.components.converter_inputs import ConverterInputs
 from converter.converter import convert
+from gui.views.courses import CoursesView
+from gui.views.main_view import MainView
 
 
-class CanvasConverterGui(tk.Tk):
+class CanvasConverterGui(ctk.CTkFrame):
     """
     Application's main window.
     """
 
-    def __init__(self):
+    def __init__(self, root, controller):
         """
         Starts the application's main window.
         """
-        super().__init__()
+        super().__init__(root, fg_color="transparent")
 
-        self.inputs_panel = ConverterInputs(self)
-        self.inputs_panel.pack(fill="x")
+        self.controller = controller
+        self.grid_rowconfigure(0, weight=1)
+        self.grid_columnconfigure(1, weight=1)
 
-        self.convert_button = tk.Button(self, text="Convert", command=self.convert)
-        self.convert_button.pack()
+        self.courses_panel = CoursesView(self, self.controller)
+        self.courses_panel.grid(row=0, column=0, sticky="nsew", padx=(4,0), pady=(0, 8))
 
-        self.config(padx=8, pady=16)
-        self.setup_window()
+        self.main_area = MainView(self, self.controller)
+        self.main_area.grid(row=0, column=1, sticky="nsew")
 
-    def setup_window(self) -> None:
+
+        # self.inputs_panel = ConverterInputs(self)
+        # self.inputs_panel.pack(fill="x")
+        #
+        # self.convert_button = tk.Button(self, text="Convert", command=self.convert)
+        # self.convert_button.pack()
+
+        root.config(padx=8, pady=8)
+        self.setup_window(root)
+
+    def set_controller(self, controller):
+        self.controller = controller
+
+    def setup_window(self, root) -> None:
         """
         Sets up the application's main window by setting
-        title and dimensions.
+        name and dimensions.
         """
-        self.title("Markdown -> Canvas converter")
-        self.update_idletasks()
-
-        width = self.winfo_width()
-        height = self.winfo_height()
-        screen_width = self.winfo_screenwidth()
-        screen_height = self.winfo_screenheight()
+        root.title("Markdown -> Canvas converter")
+        root.update_idletasks()
+        root.minsize(width=900, height=600)
+        width = root.winfo_width()
+        height = root.winfo_height()
+        screen_width = root.winfo_screenwidth()
+        screen_height = root.winfo_screenheight()
         x = (screen_width - width) // 2
         y = (screen_height - height) // 2
 
-        self.geometry(f"+{x}+{y}")
+        root.geometry(f"+{x}+{y}")
 
     def convert(self) -> None:
         """
@@ -49,12 +66,7 @@ class CanvasConverterGui(tk.Tk):
         convert(self.inputs_panel.input_path.get(), self.inputs_panel.output_path.get(), "styles/kiya-pages-style.css")
 
 
-def main() -> None:
-    """
-    Starts the application's main window and mainloop.
-    """
-    app = CanvasConverterGui()
-    app.mainloop()
+
 
 
 if __name__ == "__main__":

@@ -11,3 +11,6 @@ pyinstaller-hooks-contrib==2026.3
 setuptools==82.0.1
 soupsieve==2.8.3
 typing_extensions==4.15.0
+
+customtkinter
+pydantic

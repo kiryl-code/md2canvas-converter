@@ -40,5 +40,7 @@ def convert(input_path: str, output_path: str, styles_path: str) -> None:
     html = f"<meta charset='UTF-8'><style>{pygments_css} {styles}</style><body>{html}</body>"
     html = css_inline.inline(html)
 
-    with open(Path(output_path) / "output.html", "w", encoding="utf-8") as f:
+    output_name = str(input_path).split("/")[-1].split(".")[0].strip()
+
+    with open(Path(output_path) / f"{output_name}.html", "w", encoding="utf-8") as f:
         f.write(html)

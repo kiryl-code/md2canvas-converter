@@ -12,9 +12,14 @@ blockquote {
     border-left: 6px solid #eee;
 }
 
+hr {
+    height: 1px;
+    border: none;
+    background: linear-gradient(to right, transparent, #000, transparent);
+}
 
 code {
-    font-family: 'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;
+    font-family: Melno,Consolas,monospace;
     font-size: .75rem;
     border-radius: 6px;
     padding: .125rem .25rem;
@@ -24,13 +29,27 @@ code {
 }
 
 pre {
-    font-family: 'JetBrains Mono',Menlo,Consolas,'Courier New',monospace;
+    font-family: Melno,Consolas,monospace;
+    background: none;
+    border: none;
+    white-space: pre;
 }
 
 .codehilite {
-    padding: 0.5em 1.5em;
-    border-radius: 6px;
-    background-color: #efefef;
+    padding: 20px;
+    border-radius: 0.5em;
+    border: 1px solid #ccc;
+    overflow: auto;
+    max-width: 100%;
+}
+
+.codehilite pre {
+    color: #D4D4D4 !important;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-size: 1rem !important;
+    overflow: auto;
 }
 
 .cm {
@@ -59,4 +78,28 @@ details {
 
 .collapsible-content pre {
     overflow: auto;
+}
+
+
+table {
+    border-collapse: collapse;
+}
+
+table th,
+table td {
+    border: 1px solid #888888;
+    padding: 8px 16px;
+}
+
+table th {
+    background: #0D76BD;
+    color: #fff;
+}
+
+.side-block {
+    padding: 8px 16px;
+    border-radius: 0.5em;
+    border: 1px solid #ccc;
+    border-left: 0.5em solid;
+    margin: 16px 0;
 }
